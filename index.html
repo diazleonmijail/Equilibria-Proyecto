@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Equilibria: un espacio juvenil de bienestar emocional">
+  <title>Equilibria | Tu espacio de bienestar emocional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,600;0,700;1,400&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltars" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <nav class="nav contenedor" aria-label="Navegación principal">
+      <a class="marca" href="index.html">
+        <span class="marca-pila" aria-hidden="true"><i></i><i></i><i></i></span>
+        Equilibria
+      </a>
+      <button class="menu-boton" id="boton-menu" type="button" aria-expanded="false" aria-controls="enlaces-nav">Menú</button>
+      <div class="nav-enlaces" id="enlaces-nav">
+        <a href="index.html">Inicio</a>
+        <a href="consejos.html">Consejos</a>
+        <a href="juegos.html">Juegos</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <!-- PORTADA: texto a la izquierda, pila de piedras a la derecha.
+         Las piedras (una por situación) las crea principal.js con los datos de datos.js -->
+    <section class="portada contenedor" id="explorar">
+      <div class="portada-texto">
+        <h1 class="titulo-marca">Equilibria</h1>
+        <p class="portada-lema">Un lugar tranquilo para entender lo que sientes y encontrar ideas pequeñas que sí ayudan.</p>
+
+        <h2 class="pregunta" id="pregunta">¿Cómo te sientes hoy?</h2>
+        <p class="pregunta-ayuda">Toca la piedra que más se parece a tu día.</p>
+
+        <div class="aviso-seleccion" id="acceso-rapido" hidden>
+          <p>La última vez elegiste <strong data-tema-actual></strong>.</p>
+          <a class="boton chico" data-enlace-consejos href="consejos.html">Ver mis consejos</a>
+        </div>
+      </div>
+
+      <div class="pila" id="opciones-tema" role="group" aria-labelledby="pregunta"></div>
+    </section>
+
+    <!-- ACCESOS a las demás secciones -->
+    <nav class="accesos contenedor" aria-label="Explorar Equilibria">
+      <a class="acceso tema-azul" href="consejos.html">
+        <span class="acceso-guijarro" aria-hidden="true"></span>
+        <strong>Consejos</strong>
+        <span>Cuatro ideas concretas para lo que estás viviendo.</span>
+      </a>
+      <a class="acceso tema-amarillo" href="juegos.html">
+        <span class="acceso-guijarro" aria-hidden="true"></span>
+        <strong>Juegos</strong>
+        <span>Actividades cortas para despejarte un rato.</span>
+      </a>
+      <a class="acceso tema-violeta" href="contacto.html">
+        <span class="acceso-guijarro" aria-hidden="true"></span>
+        <strong>Contacto</strong>
+        <span>Escríbenos dudas o ideas, y encuentra dónde pedir apoyo.</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie-contenido">
+      <div>
+        <a class="marca" href="index.html">
+          <span class="marca-pila" aria-hidden="true"><i></i><i></i><i></i></span>
+          Equilibria
+        </a>
+        <p>Proyecto académico de bienestar emocional juvenil. Ofrece orientación general y no reemplaza la atención psicológica.</p>
+      </div>
+      <nav class="pie-enlaces" aria-label="Enlaces del pie">
+        <a href="index.html">Inicio</a>
+        <a href="consejos.html">Consejos</a>
+        <a href="juegos.html">Juegos</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/equilibria.js"></script>
+</body>
+</html>

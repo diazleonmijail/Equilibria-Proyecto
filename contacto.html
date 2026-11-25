@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Equilibria: un espacio juvenil de bienestar emocional">
+  <title>Ayuda y contacto | Equilibria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,600;0,700;1,400&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <a class="saltars" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <nav class="nav contenedor" aria-label="Navegación principal">
+      <a class="marca" href="index.html">
+        <span class="marca-pila" aria-hidden="true"><i></i><i></i><i></i></span>
+        Equilibria
+      </a>
+      <button class="menu-boton" id="boton-menu" type="button" aria-expanded="false" aria-controls="enlaces-nav">Menú</button>
+      <div class="nav-enlaces" id="enlaces-nav">
+        <a href="index.html">Inicio</a>
+        <a href="consejos.html">Consejos</a>
+        <a href="juegos.html">Juegos</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="encabezado contenedor">
+      <h1>Pedir ayuda también es cuidarte</h1>
+      <p>Aquí encontrarás a quién acudir si necesitas apoyo, y un formulario para dejarnos tus dudas o ideas sobre la web.</p>
+    </section>
+
+    <section class="contenedor grid-contacto">
+      <div class="bloque">
+        <h2>Déjanos un mensaje</h2>
+        <p>Este formulario es una demostración académica y <strong>no envía datos a nadie</strong>. Por favor, no incluyas información sensible.</p>
+
+        <form class="formulario" id="form-contacto" novalidate>
+          <div class="grupo-form">
+            <label for="nombre">Tu nombre</label>
+            <input id="nombre" name="nombre" autocomplete="name" maxlength="70" placeholder="¿Cómo te llamas?" required>
+            <small class="error" id="error-nombre"></small>
+          </div>
+          <div class="grupo-form">
+            <label for="correo">Correo electrónico</label>
+            <input id="correo" name="correo" type="email" autocomplete="email" maxlength="120" placeholder="ejemplo@correo.com" required>
+            <small class="error" id="error-correo"></small>
+          </div>
+          <div class="grupo-form">
+            <label for="motivo">¿Sobre qué quieres escribir?</label>
+            <select id="motivo" name="motivo" required>
+              <option value="">Elige una opción</option>
+              <option value="consulta">Consulta general</option>
+              <option value="sugerencia">Sugerencia para la web</option>
+              <option value="tecnico">Problema técnico</option>
+            </select>
+            <small class="error" id="error-motivo"></small>
+          </div>
+          <div class="grupo-form">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" maxlength="500" placeholder="Escribe aquí tu comentario" required></textarea>
+            <small class="error" id="error-mensaje"></small>
+          </div>
+          <div>
+            <label class="fila-check">
+              <input id="acepto" type="checkbox" required>
+              <span>Entiendo que este formulario es una simulación y no un servicio de atención psicológica.</span>
+            </label>
+            <small class="error" id="error-acepto"></small>
+          </div>
+          <button class="boton" type="submit">Validar mensaje</button>
+          <div class="confirmacion" id="confirmacion" role="status" aria-live="polite" hidden></div>
+        </form>
+      </div>
+
+      <aside>
+        <div class="cuadro-ayuda">
+          <h2>¿Buscas apoyo profesional?</h2>
+          <p>Equilibria no hace diagnósticos ni ofrece atención psicológica. Si necesitas acompañamiento, puedes:</p>
+          <ul class="lista-ayuda">
+            <li>Conversar con un familiar, docente, tutor u otra persona de confianza.</li>
+            <li>Acudir al área de orientación o bienestar de tu centro de estudios.</li>
+            <li>Consultar en un centro de salud o con un profesional acreditado.</li>
+            <li>Si hay peligro inmediato, llamar a los servicios de emergencia locales.</li>
+          </ul>
+          <p><strong>Importante:</strong> este formulario no es un canal de ayuda urgente.</p>
+        </div>
+
+        <div class="bloque bloque-tema">
+          <h3>Tus consejos siguen aquí</h3>
+          <p>Situación guardada: <strong data-tema-actual></strong></p>
+          <a class="boton secundario" data-enlace-consejos href="consejos.html">Consejos</a>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie-contenido">
+      <div>
+        <a class="marca" href="index.html">
+          <span class="marca-pila" aria-hidden="true"><i></i><i></i><i></i></span>
+          Equilibria
+        </a>
+        <p>Proyecto académico de bienestar emocional juvenil. Ofrece orientación general y no reemplaza la atención psicológica.</p>
+      </div>
+      <nav class="pie-enlaces" aria-label="Enlaces del pie">
+        <a href="index.html">Inicio</a>
+        <a href="consejos.html">Consejos</a>
+        <a href="juegos.html">Juegos</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/equilibria.js"></script>
+</body>
+</html>

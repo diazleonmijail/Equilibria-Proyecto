@@ -1,32 +1,7 @@
-/* =====================================================================
-   EQUILIBRIA — TODO EL JAVASCRIPT DEL SITIO
-   Un solo archivo, cargado al final de cada página:
-     <script src="js/equilibria.js"></script>
 
-   ÍNDICE
-   PARTE 1. Datos
-            1.1 Emociones y sus consejos
-            1.2 Juegos: lista, palabras y pistas
-   PARTE 2. Funciones generales (menú, emoción guardada, piedras,
-            tarjetas de consejos, color de fondo, formulario)
-   PARTE 3. Lista de juegos (juegos.html)
-   PARTE 4. Minijuegos
-            4.1 Memoria   4.2 Sopa de letras   4.3 Crucigrama
-   PARTE 5. Página de un juego (juego.html?juego=...)
-
-   Cada parte revisa si su página tiene los elementos que necesita;
-   si no los encuentra, no hace nada. Por eso el mismo archivo sirve
-   para todas las páginas sin dar errores.
-   ===================================================================== */
-
-
-/* =====================================================================
-   PARTE 1. DATOS
-   ===================================================================== */
+/* PARTE 1. DATOS */
 
 /* ---- 1.1 Emociones y sus consejos -------------------------------- */
-/* EDITAR AQUÍ LOS CONSEJOS: 4 tarjetas por cada emoción.
-   Cada consejo es [título, descripción, nota breve]. */
 window.EQUILIBRIA_TEMAS = {
   estres: {nombre:'Estrés',emoji:'⚡',clase:'tema-coral',resumen:'Cuando todo parece demasiado, empieza por algo pequeño.',frase:'Hoy no tienes que resolverlo todo.', consejos:[
     ['Una tarea a la vez','Escribe lo que necesitas hacer y escoge una sola cosa para comenzar.','Empieza por lo posible.'],
@@ -67,19 +42,6 @@ window.EQUILIBRIA_TEMAS = {
 };
 
 /* ---- 1.2 Juegos: lista, palabras y pistas ------------------------ */
-/* =====================================================================
-   EQUILIBRIA — CONTENIDO DE LOS MINIJUEGOS
-   Las palabras cambian según la emoción elegida en el Inicio.
-   Si todavía no se eligió ninguna, se usa el grupo "general".
-
-   Cada grupo tiene:
-   - palabras: 8 palabras (pueden llevar tildes y Ñ).
-       · Memoria usa las 6 primeras (6 pares = 12 cartas).
-       · Sopa de letras usa las 8.
-   - crucigrama: 6 pares ['PALABRA', 'Pista'].
-       El crucigrama se arma solo: si cambias palabras, se reacomoda.
-   ===================================================================== */
-
 /* Lista de juegos */
 window.EQUILIBRIA_JUEGOS = [
   { id: 'memoria',    nombre: 'Memoria de pares', clase: 'tema-violeta',  descripcion: 'Voltea las cartas y encuentra las parejas de palabras.',  instrucciones: 'Toca dos cartas para darles la vuelta. Si son iguales, se quedan abiertas. Encuentra todos los pares.' },
@@ -168,17 +130,7 @@ window.EQUILIBRIA_CONTENIDO_JUEGOS = {
 };
 
 
-/* =====================================================================
-   PARTE 2. FUNCIONES GENERALES DEL SITIO
-   ===================================================================== */
-/* EQUILIBRIA — JAVASCRIPT PRINCIPAL
-   1. Navegación y memoria local
-   2. Selección de una situación (Inicio)
-   3. Tarjetas reversibles (Consejos)
-   4. Validación del formulario (Contacto)
-   Los textos de las tarjetas se editan en la PARTE 1.1 de este archivo.
-*/
-
+/* PARTE 2. FUNCIONES GENERALES DEL SITIO */
 // 1. NAVEGACIÓN Y MEMORIA LOCAL
 /* Funciones compartidas. localStorage mantiene el tema al cambiar de página. */
 const CLAVE_TEMA='equilibria-tema-elegido';
@@ -189,12 +141,7 @@ function aplicarColorTema(){const id=obtenerTema();if(!id)return;document.body.c
 function actualizarAvisos(){const id=obtenerTema();document.querySelectorAll('[data-tema-actual]').forEach(n=>{n.textContent=id?window.EQUILIBRIA_TEMAS[id].nombre:'Ninguno por ahora'});document.querySelectorAll('[data-enlace-consejos]').forEach(a=>{a.textContent=id?'Ver mis consejos':'Elegir cómo me siento';a.setAttribute('href',id?'consejos.html':'index.html#explorar');});}
 function configurarMenu(){const boton=document.querySelector('#boton-menu');const nav=document.querySelector('#enlaces-nav');if(!boton||!nav)return;boton.addEventListener('click',()=>{const abierto=nav.classList.toggle('abierto');boton.setAttribute('aria-expanded',String(abierto));});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('abierto');boton.setAttribute('aria-expanded','false');}));}
 
-
-
 // 2. INICIO: la pila de piedras. Cada piedra es una situación.
-/* Orden de arriba hacia abajo: la piedra más pequeña arriba, la más ancha abajo.
-   w/h = tamaño en px, rot = inclinación, dx = desplazamiento lateral,
-   forma = border-radius irregular para que parezca una piedra real. */
 const PILA=[
  {id:'estres',     w:150,h:62,rot:'-5deg',dx:'14px', forma:'55% 45% 50% 50% / 62% 60% 40% 38%'},
  {id:'ansiedad',   w:188,h:68,rot:'3deg', dx:'-10px',forma:'48% 52% 45% 55% / 58% 64% 36% 42%'},
@@ -278,9 +225,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 
-/* =====================================================================
-   PARTE 3. LISTA DE JUEGOS (juegos.html)
-   ===================================================================== */
+/* PARTE 3. LISTA DE JUEGOS (juegos.html) */
 /* EQUILIBRIA — LISTA DE JUEGOS (juegos.html)
    Los nombres y descripciones se editan en la PARTE 1.2. */
 document.addEventListener('DOMContentLoaded',()=>{
@@ -293,17 +238,9 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 
-/* =====================================================================
-   PARTE 4. MINIJUEGOS
-   ===================================================================== */
+/*  PARTE 4. MINIJUEGOS */
 
 /* ---- 4.1 Memoria ------------------------------------------------- */
-/* =====================================================================
-   EQUILIBRIA — JUEGO DE MEMORIA
-   12 cartas boca abajo (6 palabras repetidas dos veces).
-   Se voltean dos cartas por turno: si coinciden se quedan abiertas;
-   si no, se vuelven a cerrar.
-   ===================================================================== */
 window.EQUILIBRIA_MINIJUEGOS = window.EQUILIBRIA_MINIJUEGOS || {};
 
 window.EQUILIBRIA_MINIJUEGOS.memoria = {
@@ -378,12 +315,6 @@ function mezclar(lista) {
 }
 
 /* ---- 4.2 Sopa de letras ------------------------------------------ */
-/* =====================================================================
-   EQUILIBRIA — SOPA DE LETRAS
-   Las palabras se esconden en línea recta: hacia la derecha, hacia abajo
-   o en diagonal. Se marcan arrastrando sobre las letras, o tocando la
-   primera letra y luego la última (también funciona con teclado).
-   ===================================================================== */
 window.EQUILIBRIA_MINIJUEGOS = window.EQUILIBRIA_MINIJUEGOS || {};
 
 window.EQUILIBRIA_MINIJUEGOS.sopa = {
@@ -451,7 +382,7 @@ window.EQUILIBRIA_MINIJUEGOS.sopa = {
     function soltar() {
       if (!arrastrando) return;
       arrastrando = false;
-      if (actual === inicio) {               // fue un toque: queda como primera letra
+      if (actual === inicio) {              
         limpiarSeleccion();
         ancla = inicio;
         ancla.classList.add('ancla');
@@ -459,9 +390,9 @@ window.EQUILIBRIA_MINIJUEGOS.sopa = {
         comprobar(inicio, actual);
       }
     }
-    // Teclado (Enter o Espacio sobre una letra)
+   
     grid.addEventListener('click', e => {
-      if (e.detail !== 0) return;            // los clics de ratón/dedo ya se manejan arriba
+      if (e.detail !== 0) return;           
       const celda = e.target.closest('.letra');
       if (!celda) return;
       if (!ancla) { ancla = celda; ancla.classList.add('ancla'); }
@@ -545,12 +476,7 @@ window.EQUILIBRIA_MINIJUEGOS.sopa = {
 };
 
 /* ---- 4.3 Crucigrama ---------------------------------------------- */
-/* =====================================================================
-   EQUILIBRIA — CRUCIGRAMA
-   La cuadrícula se arma sola a partir de las palabras y pistas de
-   la PARTE 1.2: coloca la palabra más larga y cruza las demás
-   donde comparten una letra.
-   ===================================================================== */
+
 window.EQUILIBRIA_MINIJUEGOS = window.EQUILIBRIA_MINIJUEGOS || {};
 
 window.EQUILIBRIA_MINIJUEGOS.crucigrama = {
@@ -799,16 +725,8 @@ window.EQUILIBRIA_MINIJUEGOS.crucigrama = {
 };
 
 
-/* =====================================================================
-   PARTE 5. PÁGINA DE UN JUEGO (juego.html)
-   ===================================================================== */
-/* =====================================================================
-   EQUILIBRIA — PÁGINA DE UN JUEGO (juego.html?juego=id)
-   1. Lee qué juego se pidió en la dirección (?juego=memoria, sopa, crucigrama).
-   2. Elige las palabras según la emoción guardada (o las generales).
-   3. Dibuja la cabecera y pide al juego correspondiente que arme el tablero.
-   Cada juego está en la PARTE 4 y se registra en window.EQUILIBRIA_MINIJUEGOS.
-   ===================================================================== */
+/* PARTE 5. PÁGINA DE UN JUEGO (juego.html) */
+
 document.addEventListener('DOMContentLoaded', () => {
   const cont = document.getElementById('juego-detalle');
   if (!cont) return;
@@ -847,7 +765,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const progreso = document.getElementById('juego-progreso');
   const final = document.getElementById('juego-final');
 
-  // Lo que cada juego puede usar para comunicarse con la página
+ 
   const api = {
     progreso(html) { progreso.innerHTML = html; },
     terminar(mensaje) {
